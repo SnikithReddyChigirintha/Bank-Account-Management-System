@@ -424,27 +424,27 @@ Updates account details.
 Deletes account records permanently.
 
 ## Concepts Used
-Classes and Objects
-Encapsulation
-File Handling
-Functions
-Loops
-Conditional Statements
+- Classes and Objects
+- Encapsulation
+- File Handling
+- Functions
+- Loops
+- Conditional Statements
 
 ## Future Enhancements
-Password Protection
-GUI Interface
-Database Connectivity
-ATM Simulation
-Transaction History
-Online Banking Features
+- Password Protection
+- GUI Interface
+- Database Connectivity
+- ATM Simulation
+- Transaction History
+- Online Banking Features
 
 ## Advantages
-Easy to use
-Permanent data storage
-Real-world banking simulation
-Beginner friendly project
-Improves OOP knowledge
+- Easy to use
+- Permanent data storage
+- Real-world banking simulation
+- Beginner friendly project
+- Improves OOP knowledge
 
 ## Team Members
 - Chigirintha Snikith Reddy
