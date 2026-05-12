@@ -1,0 +1,12 @@
++------------------+
+|   BankAccount    |
++------------------+
+| AccountNumber    |
+| Name             |
+| Balance          |
++------------------+
+| createAccount()  |
+| deposit()        |
+| withdraw()       |
+| display()        |
++------------------+
