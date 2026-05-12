@@ -55,5 +55,5 @@ Save the source code as:
 ```bash
 bank.cpp
 
-## Step 2
+# Step 2
 g++ bank.cpp -o bank
