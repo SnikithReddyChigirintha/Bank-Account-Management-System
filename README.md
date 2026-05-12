@@ -1,5 +1,3 @@
-# Bank-Account-Management-System
-Summer Project
 # Bank Account Management System
 
 A simple console-based banking application developed using C++ that performs basic banking operations like account creation, deposit, withdrawal, search, modification, and deletion of accounts using file handling.
