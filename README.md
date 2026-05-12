@@ -447,7 +447,7 @@ Beginner friendly project
 Improves OOP knowledge
 
 ## Team Members
--Chigirintha Snikith Reddy
+- Chigirintha Snikith Reddy
 - Kalki Umesh Chandra Prasad
 - Mohammed Ayan Hassain
 - Papani Kavya
