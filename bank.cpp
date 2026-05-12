@@ -1,6 +1,5 @@
 #include <iostream>
 #include <fstream>
-#include <iomanip>
 #include <cstring>
 using namespace std;
 
@@ -12,10 +11,10 @@ private:
 
 public:
     void createAccount();
-    void showAccount() const;
+    void displayAccount() const;
     void modifyAccount();
-    void deposit(float);
-    void withdraw(float);
+    void depositMoney(float amount);
+    void withdrawMoney(float amount);
     int getAccountNumber() const;
     float getBalance() const;
 };
@@ -35,28 +34,31 @@ void BankAccount::createAccount() {
     cout << "\nAccount Created Successfully!\n";
 }
 
-void BankAccount::showAccount() const {
+void BankAccount::displayAccount() const {
+    cout << "\n--------------------------------";
     cout << "\nAccount Number : " << accountNumber;
     cout << "\nAccount Holder : " << name;
-    cout << "\nBalance         : " << balance << endl;
+    cout << "\nBalance        : " << balance;
+    cout << "\n--------------------------------\n";
 }
 
 void BankAccount::modifyAccount() {
-    cout << "\nModify Account Holder Name: ";
     cin.ignore();
+
+    cout << "\nEnter New Name: ";
     cin.getline(name, 50);
 
-    cout << "Modify Balance: ";
+    cout << "Enter New Balance: ";
     cin >> balance;
 
     cout << "\nAccount Updated Successfully!\n";
 }
 
-void BankAccount::deposit(float amount) {
+void BankAccount::depositMoney(float amount) {
     balance += amount;
 }
 
-void BankAccount::withdraw(float amount) {
+void BankAccount::withdrawMoney(float amount) {
     balance -= amount;
 }
 
@@ -68,25 +70,25 @@ float BankAccount::getBalance() const {
     return balance;
 }
 
-void writeAccount();
-void displayAccount(int);
-void modifyAccountRecord(int);
-void deleteAccountRecord(int);
+void createNewAccount();
 void displayAllAccounts();
-void depositWithdraw(int, int);
+void searchAccount(int);
+void modifyExistingAccount(int);
+void deleteExistingAccount(int);
+void depositOrWithdraw(int, int);
 
 int main() {
     int choice;
-    int number;
+    int accountNo;
 
     do {
         cout << "\n======================================";
         cout << "\n BANK ACCOUNT MANAGEMENT SYSTEM";
         cout << "\n======================================";
-        cout << "\n1. Create Account";
-        cout << "\n2. Deposit Amount";
-        cout << "\n3. Withdraw Amount";
-        cout << "\n4. Display Account";
+        cout << "\n1. Create New Account";
+        cout << "\n2. Deposit Money";
+        cout << "\n3. Withdraw Money";
+        cout << "\n4. Search Account";
         cout << "\n5. Display All Accounts";
         cout << "\n6. Modify Account";
         cout << "\n7. Delete Account";
@@ -98,25 +100,25 @@ int main() {
         switch(choice) {
 
             case 1:
-                writeAccount();
+                createNewAccount();
                 break;
 
             case 2:
                 cout << "\nEnter Account Number: ";
-                cin >> number;
-                depositWithdraw(number, 1);
+                cin >> accountNo;
+                depositOrWithdraw(accountNo, 1);
                 break;
 
             case 3:
                 cout << "\nEnter Account Number: ";
-                cin >> number;
-                depositWithdraw(number, 2);
+                cin >> accountNo;
+                depositOrWithdraw(accountNo, 2);
                 break;
 
             case 4:
                 cout << "\nEnter Account Number: ";
-                cin >> number;
-                displayAccount(number);
+                cin >> accountNo;
+                searchAccount(accountNo);
                 break;
 
             case 5:
@@ -125,18 +127,18 @@ int main() {
 
             case 6:
                 cout << "\nEnter Account Number: ";
-                cin >> number;
-                modifyAccountRecord(number);
+                cin >> accountNo;
+                modifyExistingAccount(accountNo);
                 break;
 
             case 7:
                 cout << "\nEnter Account Number: ";
-                cin >> number;
-                deleteAccountRecord(number);
+                cin >> accountNo;
+                deleteExistingAccount(accountNo);
                 break;
 
             case 8:
-                cout << "\nThank You! Exiting Program...\n";
+                cout << "\nThank You! Program Exited.\n";
                 break;
 
             default:
@@ -148,11 +150,10 @@ int main() {
     return 0;
 }
 
-void writeAccount() {
+void createNewAccount() {
     BankAccount account;
 
-    ofstream outFile;
-    outFile.open("accounts.dat", ios::binary | ios::app);
+    ofstream outFile("accounts.dat", ios::binary | ios::app);
 
     account.createAccount();
 
@@ -162,23 +163,38 @@ void writeAccount() {
     outFile.close();
 }
 
-void displayAccount(int number) {
+void displayAllAccounts() {
+    BankAccount account;
+
+    ifstream inFile("accounts.dat", ios::binary);
+
+    if(!inFile) {
+        cout << "\nFile Not Found!\n";
+        return;
+    }
+
+    cout << "\n========== ALL ACCOUNT DETAILS ==========\n";
+
+    while(inFile.read(reinterpret_cast<char*>(&account),
+                      sizeof(BankAccount))) {
+
+        account.displayAccount();
+    }
+
+    inFile.close();
+}
+
+void searchAccount(int number) {
     BankAccount account;
     bool found = false;
 
-    ifstream inFile;
-    inFile.open("accounts.dat", ios::binary);
-
-    if(!inFile) {
-        cout << "\nFile could not be opened!\n";
-        return;
-    }
+    ifstream inFile("accounts.dat", ios::binary);
 
     while(inFile.read(reinterpret_cast<char*>(&account),
                       sizeof(BankAccount))) {
 
         if(account.getAccountNumber() == number) {
-            account.showAccount();
+            account.displayAccount();
             found = true;
         }
     }
@@ -189,54 +205,26 @@ void displayAccount(int number) {
         cout << "\nAccount Not Found!\n";
 }
 
-void displayAllAccounts() {
+void modifyExistingAccount(int number) {
     BankAccount account;
-
-    ifstream inFile;
-    inFile.open("accounts.dat", ios::binary);
-
-    if(!inFile) {
-        cout << "\nFile could not be opened!\n";
-        return;
-    }
-
-    cout << "\n========== ACCOUNT HOLDER LIST ==========";
-
-    while(inFile.read(reinterpret_cast<char*>(&account),
-                      sizeof(BankAccount))) {
-
-        account.showAccount();
-        cout << "\n-------------------------------------";
-    }
-
-    inFile.close();
-}
-
-void modifyAccountRecord(int number) {
     bool found = false;
 
-    BankAccount account;
+    fstream file("accounts.dat",
+                 ios::binary | ios::in | ios::out);
 
-    fstream file;
-    file.open("accounts.dat",
-              ios::binary | ios::in | ios::out);
-
-    while(!file.eof() && !found) {
-
-        file.read(reinterpret_cast<char*>(&account),
-                  sizeof(BankAccount));
+    while(file.read(reinterpret_cast<char*>(&account),
+                    sizeof(BankAccount)) && !found) {
 
         if(account.getAccountNumber() == number) {
 
-            account.showAccount();
+            cout << "\nCurrent Account Details:\n";
+            account.displayAccount();
 
-            cout << "\nEnter New Details\n";
             account.modifyAccount();
 
-            int position =
-                (-1) * static_cast<int>(sizeof(BankAccount));
+            int pos = (-1) * static_cast<int>(sizeof(BankAccount));
 
-            file.seekp(position, ios::cur);
+            file.seekp(pos, ios::cur);
 
             file.write(reinterpret_cast<char*>(&account),
                        sizeof(BankAccount));
@@ -253,22 +241,11 @@ void modifyAccountRecord(int number) {
         cout << "\nRecord Not Found!\n";
 }
 
-void deleteAccountRecord(int number) {
+void deleteExistingAccount(int number) {
     BankAccount account;
 
-    ifstream inFile;
-    ofstream outFile;
-
-    inFile.open("accounts.dat", ios::binary);
-
-    if(!inFile) {
-        cout << "\nFile could not be opened!\n";
-        return;
-    }
-
-    outFile.open("temp.dat", ios::binary);
-
-    inFile.seekg(0, ios::beg);
+    ifstream inFile("accounts.dat", ios::binary);
+    ofstream outFile("temp.dat", ios::binary);
 
     while(inFile.read(reinterpret_cast<char*>(&account),
                       sizeof(BankAccount))) {
@@ -286,40 +263,32 @@ void deleteAccountRecord(int number) {
     remove("accounts.dat");
     rename("temp.dat", "accounts.dat");
 
-    cout << "\nRecord Deleted Successfully!\n";
+    cout << "\nAccount Deleted Successfully!\n";
 }
 
-void depositWithdraw(int number, int option) {
-
-    float amount;
-    bool found = false;
-
+void depositOrWithdraw(int number, int choice) {
     BankAccount account;
+    bool found = false;
+    float amount;
 
-    fstream file;
-    file.open("accounts.dat",
-              ios::binary | ios::in | ios::out);
+    fstream file("accounts.dat",
+                 ios::binary | ios::in | ios::out);
 
-    if(!file) {
-        cout << "\nFile could not be opened!\n";
-        return;
-    }
-
-    while(!file.eof() && !found) {
-
-        file.read(reinterpret_cast<char*>(&account),
-                  sizeof(BankAccount));
+    while(file.read(reinterpret_cast<char*>(&account),
+                    sizeof(BankAccount)) && !found) {
 
         if(account.getAccountNumber() == number) {
 
-            account.showAccount();
+            account.displayAccount();
 
-            if(option == 1) {
+            if(choice == 1) {
 
                 cout << "\nEnter Amount to Deposit: ";
                 cin >> amount;
 
-                account.deposit(amount);
+                account.depositMoney(amount);
+
+                cout << "\nAmount Deposited Successfully!\n";
             }
             else {
 
@@ -327,22 +296,22 @@ void depositWithdraw(int number, int option) {
                 cin >> amount;
 
                 if(amount <= account.getBalance()) {
-                    account.withdraw(amount);
+
+                    account.withdrawMoney(amount);
+
+                    cout << "\nAmount Withdrawn Successfully!\n";
                 }
                 else {
                     cout << "\nInsufficient Balance!\n";
                 }
             }
 
-            int position =
-                (-1) * static_cast<int>(sizeof(BankAccount));
+            int pos = (-1) * static_cast<int>(sizeof(BankAccount));
 
-            file.seekp(position, ios::cur);
+            file.seekp(pos, ios::cur);
 
             file.write(reinterpret_cast<char*>(&account),
                        sizeof(BankAccount));
-
-            cout << "\nTransaction Successful!\n";
 
             found = true;
         }
