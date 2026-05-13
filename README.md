@@ -69,6 +69,7 @@ Run the program:
 ```
 ## Full Source Code
 
+```cpp
 #include <iostream>
 #include <fstream>
 #include <cstring>
@@ -393,6 +394,7 @@ void depositOrWithdraw(int number, int choice) {
     if(!found)
         cout << "\nRecord Not Found!\n";
 }
+```
 
 ## Project Modules
 1. Account Creation
