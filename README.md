@@ -68,7 +68,7 @@ Run the program:
 ./bank
 ```
 ## Full Source Code
-'''
+
 #include <iostream>
 #include <fstream>
 #include <cstring>
@@ -393,7 +393,7 @@ void depositOrWithdraw(int number, int choice) {
     if(!found)
         cout << "\nRecord Not Found!\n";
 }
-'''
+
 ## Project Modules
 1. Account Creation
 Creates a new account with:
