@@ -1,11 +1,42 @@
-Start
-  ↓
-Menu
-  ↓
-Choose Operation
-  ↓
-Process Data
-  ↓
-Display Result
-  ↓
-Exit
+                        +-------+
+                        | Start |
+                        +-------+
+                            |
+                            v
+
+           +----------------------------------+
+           |   BANK ACCOUNT MANAGEMENT MENU   |
+           +----------------------------------+
+           | 1. Create New Account            |
+           | 2. Deposit Money                 |
+           | 3. Withdraw Money                |
+           | 4. Search Account                |
+           | 5. Display All Accounts          |
+           | 6. Modify Account                |
+           | 7. Delete Account                |
+           | 8. Exit                          |
+           +----------------------------------+
+                            |
+                            v
+
+                  +------------------+
+                  | Choose Operation |
+                  +------------------+
+                            |
+                            v
+
+             +-----------------------------+
+             | Process Selected Operation  |
+             +-----------------------------+
+                            |
+                            v
+
+                  +------------------+
+                  | Display Result   |
+                  +------------------+
+                            |
+                            v
+
+                         +------+
+                         | Exit |
+                         +------+
