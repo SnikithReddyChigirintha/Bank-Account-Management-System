@@ -1,0 +1,131 @@
+Bank Account Management System - Sample Outputs
+
+
+Case 1: Create New Account
+
+======================================
+ BANK ACCOUNT MANAGEMENT SYSTEM
+======================================
+1. Create New Account
+2. Deposit Money
+3. Withdraw Money
+4. Search Account
+5. Display All Accounts
+6. Modify Account
+7. Delete Account
+8. Exit
+======================================
+Enter Your Choice: 1
+
+Enter Account Number: 1001
+Enter Account Holder Name: Rahul Sharma
+Enter Initial Balance: 5000
+
+Account Created Successfully!
+
+
+
+Case 2: Deposit Money
+
+Enter Account Number: 1001
+
+--------------------------------
+Account Number : 1001
+Account Holder : Rahul Sharma
+Balance        : 5000
+--------------------------------
+
+Enter Amount to Deposit: 2000
+
+Amount Deposited Successfully!
+
+
+
+Case 3: Withdraw Money
+
+Enter Account Number: 1001
+
+--------------------------------
+Account Number : 1001
+Account Holder : Rahul Sharma
+Balance        : 7000
+--------------------------------
+
+Enter Amount to Withdraw: 1500
+
+Amount Withdrawn Successfully!
+
+Case 4: Withdraw with Insufficient Balance
+
+
+
+Enter Account Number: 1001
+
+--------------------------------
+Account Number : 1001
+Account Holder : Rahul Sharma
+Balance        : 5500
+--------------------------------
+
+Enter Amount to Withdraw: 10000
+
+Insufficient Balance!
+
+
+
+Case 5: Search Account
+
+Enter Account Number: 1001
+
+--------------------------------
+Account Number : 1001
+Account Holder : Rahul Sharma
+Balance        : 5500
+--------------------------------
+
+
+
+Case 6: Display All Accounts
+
+========== ALL ACCOUNT DETAILS ==========
+
+--------------------------------
+Account Number : 1001
+Account Holder : Rahul Sharma
+Balance        : 5500
+--------------------------------
+
+--------------------------------
+Account Number : 1002
+Account Holder : Priya Verma
+Balance        : 8000
+--------------------------------
+
+
+
+Case 7: Modify Account
+
+Enter Account Number: 1001
+
+Current Account Details:
+
+--------------------------------
+Account Number : 1001
+Account Holder : Rahul Sharma
+Balance        : 5500
+--------------------------------
+
+Enter New Name: Rahul Kumar
+Enter New Balance: 9000
+
+Account Updated Successfully!
+
+Record Updated Successfully!
+
+
+
+Case 8: Delete Account
+
+Enter Account Number: 1001
+
+Account Deleted Successfully!
