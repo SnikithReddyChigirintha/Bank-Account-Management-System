@@ -446,8 +446,8 @@ Deletes account records permanently.
 ## Team Members
 - Chigirintha Snikith Reddy
 - Kalki Umesh Chandra Prasad
-- Mohammed Ayan Hassain
 - Papani Kavya
+- Mohammed Ayan Hassain
 - Parne Nikhilesh Reddy
 
 ## Conclusion
