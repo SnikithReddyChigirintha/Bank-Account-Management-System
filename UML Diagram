@@ -1,12 +1,23 @@
-+------------------+
-|   BankAccount    |
-+------------------+
-| AccountNumber    |
-| Name             |
-| Balance          |
-+------------------+
-| createAccount()  |
-| deposit()        |
-| withdraw()       |
-| display()        |
-+------------------+
+                     +----------------------------------+
+                     |           BankAccount            |
+                     +----------------------------------+
+
+                     | - accountNumber : int            |
+                     | - name          : char[50]       |
+                     | - balance       : float          |
+
+                     +----------------------------------+
+
+                     | + createAccount()      : void    |
+                     | + displayAccount()     : void    |
+                     | + modifyAccount()      : void    |
+                     | + depositMoney()       : void    |
+                     | + withdrawMoney()      : void    |
+                     | + getAccountNumber()   : int     |
+                     | + getBalance()         : float   |
+
+                     +----------------------------------+
+
+
+   -  : Private Member
+   +  : Public Member
