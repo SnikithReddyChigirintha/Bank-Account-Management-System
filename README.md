@@ -28,6 +28,11 @@ A simple console-based banking application developed using C++ that performs bas
 
 ---
 
+# Project Type
+Console-based application developed using C++.
+
+---
+
 # Technologies Used
 
 - C++
