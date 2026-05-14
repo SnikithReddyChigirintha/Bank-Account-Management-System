@@ -444,11 +444,11 @@ Deletes account records permanently.
 - Improves OOP knowledge
 
 ## Team Members
-- Chigirintha Snikith Reddy
-- Kalki Umesh Chandra Prasad
-- Papani Kavya
-- Mohammed Ayan Hassain
-- Parne Nikhilesh Reddy
+- Chigirintha Snikith Reddy(EB)
+- Kalki Umesh Chandra Prasad(EJ)
+- Mohammed Ayan Hassain(CJ)
+- Papani Kavya(CZ)
+- Parne Nikhilesh Reddy(DH)
 
 ## Conclusion
 The Bank Account Management System is a simple and efficient C++ application that demonstrates banking operations using object oriented programming and file handling concepts.
